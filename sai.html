@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitation</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mp3">
+</audio>
+
+<!-- FIRST SCREEN -->
+<div class="container">
+<video id="bgVideo" playsinline preload="auto">
+    <source src="your-video.mp4" type="video/mp4">
+</video>
+</div>
+
+    <div class="button-container" id="btnContainer">
+        <button class="luxury-btn" onclick="playVideo()">
+            Tap to Open Invitation ✨
+        </button>
+    </div>
+
+    <!-- ✅ SCROLL INDICATOR ADDED HERE -->
+    <div class="scroll-indicator">
+        <span>Scroll</span><br> ↓
+    </div>
+
+</div>
+
+<!-- SECOND SCREEN -->
+<section class="invitation-section">
+
+    <div class="hearts-container" id="hearts"></div>
+
+    <div class="content">
+        <p class="top-text">We are thrilled to invite</p>
+
+        <h1 class="name pink">Sai Kumar</h1>
+        <p class="sub">s/o Vijayalakshmi & Ramachandrudu</p>
+
+        <h2 class="and">&</h2>
+
+        <h1 class="name pink">Hemasree</h1>
+        <p class="sub">d/o Vijayalakshmi & Venkata Krishan</p>
+
+        <p class="invite-line">ARE TYING THE KNOT ON</p>
+
+        <!-- ✅ SCRATCH BOX (already correct, just keep this version) -->
+        <div class="scratch-box">
+            <span class="hidden-date">1st May 2026</span>
+            <canvas id="scratchCanvas"></canvas>
+            <span class="scratch-text">Scratch to Reveal ✨</span>
+        </div>
+
+        <div class="countdown">
+            <div><span id="days">00</span><p>DAYS</p></div>
+            <div><span id="hours">00</span><p>HOURS</p></div>
+            <div><span id="minutes">00</span><p>MINUTES</p></div>
+            <div><span id="seconds">00</span><p>SECONDS</p></div>
+        </div>
+    </div>
+
+</section>
+<section class="couple-section">
+
+    <!-- hearts background -->
+    <div class="hearts-container"></div>
+
+    <!-- Groom Card -->
+    <div class="card groom-card">
+        <img src="groom.jpg" alt="Groom">
+
+        <h3>Groom</h3>
+        <h2>Sai Kumar</h2>
+        <p>s/o Vijayalakshmi & Ramachandrudu</p>
+        <p class="address">
+            Plot No. 95, Shiva Sai Green Homes,<br>
+            Raitu Nagaram, Nandyal
+        </p>
+    </div>
+
+    <!-- Bride Card -->
+    <div class="card bride-card">
+        <img src="bride.jpg" alt="Bride">
+
+        <h3>Bride</h3>
+        <h2>Hemasree</h2>
+        <p>d/o Vijayalakshmi & Venkata Krishna</p>
+        <p class="address">
+            B. Thandrapadu,<br>
+            Kurnool
+        </p>
+    </div>
+
+</section>
+<section class="events-section">
+
+    <div class="hearts-container"></div>
+
+    <div class="events-container">
+
+        <!-- 1 -->
+        <div class="event-box">
+            <h2>Haldi</h2>
+            <p class="date">30th April 2026</p>
+            <hr>
+            <p class="dress">Dress Code : Haldi / Yellow</p>
+        </div>
+
+        <!-- 2 -->
+        <div class="event-box">
+            <h2>Baraat</h2>
+            <p class="date">30th April 2026, Evening 6:00 PM</p>
+            <hr>
+            <p class="dress">Dress Code : Indo-western</p>
+        </div>
+
+        <!-- 3 (Highlighted) -->
+        <div class="event-box highlight">
+            <h2>Wedding</h2>
+            <p class="date">1st May 2026, 10:21 PM</p>
+            <hr>
+            <p class="dress">Dress Code : Traditional Wear</p>
+        </div>
+
+        <!-- 4 -->
+        <div class="event-box">
+            <h2>Reception</h2>
+            <p class="date">2nd May 2026</p>
+            <hr>
+            <p class="dress">Dress Code : Party Wear</p>
+        </div>
+
+    </div>
+
+</section>
+<section class="venue-section">
+
+    <div class="hearts-container"></div>
+
+    <!-- TITLE (OUTSIDE BOX) -->
+    <div class="venue-header">
+        <h2>📍 Venue</h2>
+    </div>
+
+    <!-- MAP BOX -->
+    <div class="venue-box">
+
+        <a href="https://maps.app.goo.gl/bcDwyXPRB7q2bSAN6?g_st=ic" target="_blank">
+            <img src="map.jpg" alt="Venue Map">
+        </a>
+
+        <!-- Small instruction -->
+        <p class="direction-note">
+            Click above to get directions
+        </p>
+
+    </div>
+
+    <!-- ADDRESS -->
+    <p class="venue-address">
+        Yatham Jayachandra Reddy Function Hall,<br>
+        Rythu Nagaram, Nandyal
+    </p>
+
+</section>
+<section class="love-section">
+
+    <div class="hearts-container"></div>
+
+    <!-- HEADING -->
+    <h2 class="love-title">💖 Love Story</h2>
+
+    <!-- GALLERY BOX -->
+    <div class="gallery-box">
+
+        <!-- LEFT BUTTON -->
+        <button class="scroll-btn left" onclick="scrollGallery(-1)">❮</button>
+
+        <!-- IMAGES -->
+        <div class="gallery" id="gallery">
+
+            <!-- Replace with your 10 images -->
+            <img src="Groom.jpg">
+            <img src="bride.jpg">
+            <img src="img3.jpg">
+            <img src="img4.jpg">
+            <img src="img5.jpg">
+            <img src="img6.jpg">
+            <img src="img7.jpg">
+            <img src="img8.jpg">
+            <img src="img9.jpg">
+            <img src="img10.jpg">
+
+        </div>
+
+        <!-- RIGHT BUTTON -->
+        <button class="scroll-btn right" onclick="scrollGallery(1)">❯</button>
+
+    </div>
+
+</section>
+<section class="teaser-section">
+
+    <div class="hearts-container"></div>
+
+    <!-- HEADING -->
+    <h2 class="teaser-title">🎬 Teaser</h2>
+
+    <!-- VIDEO BOX -->
+    <div class="teaser-box">
+
+    <video id="teaserVideo" controls>
+        <source src="teaser.mp4" type="video/mp4">
+    </video>
+</div>
+</div>
+
+    </div>
+
+</section>
+<section class="final-section">
+
+    <div class="hearts-container"></div>
+
+    <div class="final-content">
+
+        <p class="final-text">
+            With the grace of God and the blessings of our ancestors, the parents and grandparents of 
+            <span>Sai Kumar</span> and <span>Hemasree</span> cordially invite you to celebrate their wedding ceremony.
+        </p>
+
+        <p class="final-text">
+            We believe that a wedding is not just a union of two souls, but a celebration of the community that surrounds them. 
+            We heartly welcome all our dear relatives, friends, and well-wishers to take part in all the wedding festivities.
+        </p>
+
+        <p class="final-text highlight">
+            Your presence on <b>May 1st, 2026, at 10:21 AM</b> will make this occasion truly complete.
+        </p>
+
+        <p class="final-text">
+            We request you to bless the couple with your heartiest wishes for a life filled with love and prosperity.
+        </p>
+
+        <p class="signature">
+            Warm Regards,<br>
+            The Parents, Grandparents & Well-wishers
+        </p>
+
+        <!-- CLOSING ANIMATION -->
+        <div class="closing">
+            💖 Thank You 💖
+        </div>
+
+    </div>
+
+</section>
+<script src="script.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,879 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.2); /* slight dark overlay */
+    z-index: 1;
+}
+body {
+    font-family: 'Playfair Display', serif;
+    background: black;
+    overflow-x: hidden; /* ✅ allows scroll */
+}
+
+/* FIRST SCREEN */
+/* ONLY first screen video */
+.container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+/* ONLY first screen background video */
+.container #bgVideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    z-index: 0;
+}
+.button-container,
+.scroll-indicator {
+    position: relative;
+    z-index: 2;
+}
+/* Button */
+.button-container {
+    position: absolute;
+    bottom: 50px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.luxury-btn {
+    padding: 14px 36px;
+    font-size: 18px;
+    color: white;
+    background: rgba(0,0,0,0.4);
+    border: 1px solid gold;
+    border-radius: 40px;
+    cursor: pointer;
+}
+
+/* SECOND SCREEN */
+/* SECOND SCREEN */
+.invitation-section {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #ffe4ec, #ffffff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    padding: 40px 20px;
+}
+
+/* CENTER CONTENT PROPERLY */
+.content {
+    text-align: center;
+    max-width: 500px; /* 🔥 IMPORTANT */
+    width: 100%;
+    margin: auto;
+}
+
+/* TEXT STYLING */
+.top-text {
+    letter-spacing: 2px;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.name {
+    font-size: 42px;
+    margin: 5px 0;
+    font-weight: 700;
+}
+
+.pink {
+    color: #e75480;
+}
+
+.sub {
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 12px;
+}
+
+.and {
+    font-size: 28px;
+    margin: 10px 0;
+}
+
+.invite-line {
+    margin: 20px 0 10px;
+    letter-spacing: 2px;
+    color: #555;
+    font-size: 14px;
+}
+
+/* SCRATCH BOX FIX */
+.scratch-box {
+    position: relative;
+    width: 220px;
+    height: 60px;
+    margin: 0 auto 25px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #e75480;
+}
+
+.hidden-date {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #e75480;
+    font-size: 18px;
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* ✅ COUNTDOWN FIXED (ROW LAYOUT) */
+.countdown {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 10px;
+}
+
+.countdown div {
+    display: flex;
+    flex-direction: column; /* number above label */
+    align-items: center;
+}
+
+.countdown span {
+    font-size: 22px;
+    color: #e75480;
+    font-weight: bold;
+}
+
+.countdown p {
+    font-size: 10px;
+    color: #777;
+    margin-top: 3px;
+}
+
+/* HEARTS */
+.hearts-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.heart {
+    position: absolute;
+    color: #ff4d6d;
+    font-size: 16px;
+    animation: fall linear forwards;
+}
+
+@keyframes fall {
+    to {
+        transform: translateY(110vh);
+        opacity: 0;
+    }
+}
+/* TOP LINE */
+.top-text {
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: #777;
+
+    /* you can edit */
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+/* MAIN NAMES */
+.name {
+    font-size: 42px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    font-family: "great vibes", cursive;
+    text-transform: capitalize;
+
+    /* edit here */
+    color: #e75480;
+}
+
+/* SUB TEXT (parents) */
+.sub {
+    font-size: 14px;
+    color: #888;
+    letter-spacing: 1px;
+
+    /* edit */
+    font-style: italic;
+}
+
+/* AMPERSAND (&) */
+.and {
+    font-size: 30px;
+    margin: 12px 0;
+
+    /* edit */
+    color: #444;
+    font-weight: bold;
+}
+
+/* INVITE LINE */
+.invite-line {
+    font-size: 13px;
+    letter-spacing: 3px;
+    margin-top: 20px;
+
+    /* edit */
+    color: #666;
+    text-transform: uppercase;
+}
+/* Scratch instruction text */
+.scratch-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%); /* 🔥 THIS CENTERS PERFECTLY */
+
+    font-size: 14px;
+    color: white;
+    letter-spacing: 1px;
+    font-weight: 500;
+
+    pointer-events: none;
+    text-align: center;
+    width: 100%;
+}
+.scroll-indicator {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    text-align: center;
+
+    font-size: 26px;
+    color: white;
+
+    animation: bounce 1.5s infinite;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+.scroll-indicator span {
+    font-size: 12px;
+    letter-spacing: 2px;
+    opacity: 0.8;
+}
+/* Animation */
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(8px); }
+}
+/* SECTION (smooth continuous background) */
+.couple-section {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fff0f5, #ffe4ec); /* softer blend */
+
+    position: relative;
+    display: flex;
+    flex-direction: column; /* 🔥 STACKED */
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+
+    overflow: hidden;
+    padding: 60px 20px;
+}
+
+/* HEARTS (same as previous section) */
+.couple-section .hearts-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* CARD DESIGN */
+.card {
+    width: 280px;
+    padding: 20px;
+    border-radius: 20px;
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+
+    transition: all 1s ease;
+}
+
+/* IMAGE */
+.card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 10px;
+}
+
+/* TEXT */
+.card h3 {
+    font-size: 14px;
+    color: #999;
+}
+
+.card h2 {
+    color: #e75480;
+    margin: 5px 0;
+}
+
+.card p {
+    font-size: 13px;
+    color: #555;
+}
+
+.address {
+    margin-top: 10px;
+    font-size: 12px;
+    color: #777;
+}
+
+/* 🔥 ANIMATION START */
+.groom-card {
+    transform: translateX(-200px); /* from left */
+    opacity: 0;
+}
+
+.bride-card {
+    transform: translateX(200px); /* from right */
+    opacity: 0;
+}
+
+/* 🔥 FINAL POSITION */
+.show-card {
+    transform: translateX(0);
+    opacity: 1;
+}
+/* SECTION */
+.events-section {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fff0f5, #ffe4ec);
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 60px 20px;
+    overflow: hidden;
+}
+
+/* HEARTS */
+.events-section .hearts-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* CONTAINER */
+.events-container {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* EVENT BOX */
+.event-box {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+
+    padding: 20px;
+    border-radius: 15px;
+
+    text-align: left; /* 🔥 LEFT ALIGN */
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+/* TITLE */
+.event-box h2 {
+    color: #e75480;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* DATE */
+.date {
+    font-size: 14px;
+    color: #444;
+}
+
+/* LINE */
+.event-box hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, #e75480, transparent);
+    margin: 10px 0;
+}
+
+/* DRESS */
+.dress {
+    font-size: 13px;
+    color: #666;
+}
+
+/* 🔥 HIGHLIGHT WEDDING */
+.highlight {
+    border: 2px solid #e75480;
+    box-shadow: 0 10px 30px rgba(231, 84, 128, 0.3);
+    transform: scale(1.03);
+}
+/* SECTION */
+.events-section {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fff0f5, #ffe4ec);
+
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 60px 20px;
+    overflow: hidden;
+}
+
+/* HEARTS */
+.events-section .hearts-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* CONTAINER */
+.events-container {
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+/* EVENT BOX */
+.event-box {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(10px);
+
+    padding: 20px;
+    border-radius: 15px;
+
+    text-align: left; /* 🔥 LEFT ALIGN */
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+/* TITLE */
+.event-box h2 {
+    color: #e75480;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* DATE */
+.date {
+    font-size: 14px;
+    color: #444;
+}
+
+/* LINE */
+.event-box hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(to right, #e75480, transparent);
+    margin: 10px 0;
+}
+
+/* DRESS */
+.dress {
+    font-size: 13px;
+    color: #666;
+}
+
+/* 🔥 HIGHLIGHT WEDDING */
+.highlight {
+    border: 2px solid #e75480;
+    box-shadow: 0 10px 30px rgba(231, 84, 128, 0.3);
+    transform: scale(1.03);
+}
+/* SECTION */
+.venue-section {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fff0f5, #ffe4ec);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 60px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* HEARTS */
+.venue-section .hearts-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* HEADER */
+.venue-header {
+    margin-bottom: 20px;
+}
+
+.venue-header h2 {
+    color: #e75480;
+    font-size: 26px;
+}
+
+/* BOX (same width as event boxes) */
+.venue-box {
+    width: 100%;
+    max-width: 500px; /* same as events */
+   
+
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(10px);
+
+    border-radius: 15px;
+    border: 2px solid #e75480;
+
+    padding: 15px;
+    position: relative;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+/* MAP IMAGE */
+.venue-box img {
+    width: 100%;
+    height: 600px; /* controlled height */
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* NOTE */
+.direction-note {
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+
+    font-size: 11px;
+    color: #666;
+}
+
+/* ADDRESS */
+.venue-address {
+    margin-top: 15px;
+    text-align: center;
+
+    font-size: 20px;
+    color: #e75480;
+}
+/* SECTION */
+.love-section {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fff0f5, #ffe4ec);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 60px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* HEARTS */
+.love-section .hearts-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* TITLE */
+.love-title {
+    font-size: 28px;
+    color: #e75480;
+    margin-bottom: 25px;
+
+    letter-spacing: 2px;
+}
+
+/* GALLERY BOX */
+.gallery-box {
+    width: 100%;
+    max-width: 520px;
+
+    background: rgba(255,255,255,0.7);
+    backdrop-filter: blur(10px);
+
+    border: 2px solid #e75480;
+    border-radius: 15px;
+
+    padding: 15px;
+    position: relative;
+
+    overflow: hidden;
+}
+
+/* GALLERY */
+.gallery {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+}
+
+/* HIDE SCROLLBAR */
+.gallery::-webkit-scrollbar {
+    display: none;
+}
+
+/* IMAGES */
+.gallery img {
+    height: 580px;
+    min-width: 500px;
+
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* BUTTONS */
+.scroll-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+
+    background: rgba(255,255,255,0.8);
+    border: none;
+    border-radius: 50%;
+
+    width: 35px;
+    height: 35px;
+
+    cursor: pointer;
+    font-size: 18px;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.scroll-btn.left {
+    left: 5px;
+}
+
+.scroll-btn.right {
+    right: 5px;
+}
+
+/* HOVER */
+.scroll-btn:hover {
+    background: #e75480;
+    color: white;
+}
+/* SECTION */
+
+
+.teaser-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* HEARTS */
+.teaser-section .hearts-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* TITLE */
+.teaser-title {
+    font-size: 28px;
+    color: #e75480;
+    margin-bottom: 25px;
+}
+
+/* 🔥 SINGLE CLEAN BOX */
+.teaser-box {
+    width: 100%;
+    max-width: 520px;
+
+    border: 2px solid #e75480;
+    border-radius: 15px;
+
+    padding: 12px; /* reduced */
+
+    background: rgba(255,255,255,0.6);
+
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+/* VIDEO */
+.teaser-box video {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16/9;
+
+    border-radius: 10px;
+    display: block;
+}
+/* CENTER CONTENT PROPERLY */
+.teaser-section > * {
+    position: relative;
+    z-index: 2;
+}
+/* SECTION */
+.final-section {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fff0f5, #ffe4ec);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* HEARTS */
+.final-section .hearts-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+/* CONTENT */
+.final-content {
+    max-width: 700px;
+    text-align: center;
+    z-index: 2;
+}
+
+/* TEXT */
+.final-text {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 18px;
+}
+
+/* NAMES HIGHLIGHT */
+.final-text span {
+    color: #e75480;
+    font-weight: bold;
+}
+
+/* IMPORTANT LINE */
+.final-text.highlight {
+    color: #e75480;
+    font-weight: bold;
+}
+
+/* SIGNATURE */
+.signature {
+    margin-top: 25px;
+    font-size: 15px;
+    color: #777;
+}
+
+/* CLOSING */
+.closing {
+    margin-top: 30px;
+    font-size: 20px;
+    color: #e75480;
+
+    animation: fadeIn 3s ease-in-out infinite alternate;
+}
+
+/* ANIMATION */
+@keyframes fadeIn {
+    from {
+        opacity: 0.3;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+/* 🚫 Disable scroll initially */
+body.no-scroll {
+    overflow: hidden;
+}
+/* 🌸 ONE continuous background */
+body {
+    background: linear-gradient(135deg, #fff0f5, #ffe4ec);
+}
+
+/* remove individual backgrounds */
+.invitation-section,
+.couple-section,
+.events-section,
+.venue-section,
+.love-section,
+.teaser-section,
+.final-section {
+    background: transparent !important;
+}
+/*
+.button-container {
+    transition: opacity 0.5s ease;
+}
+.video-wrapper {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.video-wrapper iframe {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 177.77vh;  
+    height: 100vh;
+    transform: translate(-50%, -50%);
+    pointer-events: none; 
+

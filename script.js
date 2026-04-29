@@ -149,3 +149,16 @@ window.addEventListener("DOMContentLoaded", () => {
     }
 
 });
+// 🎞️ GALLERY SCROLL FUNCTION (FIX)
+window.scrollGallery = function(direction) {
+    const gallery = document.getElementById("gallery");
+
+    if (!gallery) return;
+
+    const scrollAmount = 520; // width of one image
+
+    gallery.scrollBy({
+        left: direction * scrollAmount,
+        behavior: "smooth"
+    });
+};

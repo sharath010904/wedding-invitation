@@ -86,43 +86,54 @@ window.addEventListener("DOMContentLoaded", () => {
     }, 1000);
 
     // ✨ SCRATCH EFFECT
-    const canvas = document.getElementById("scratchCanvas");
+// ✨ SCRATCH EFFECT (FIXED FOR MOBILE)
+const canvas = document.getElementById("scratchCanvas");
 
-    if (canvas) {
-        const ctx = canvas.getContext("2d");
+if (canvas) {
+    const ctx = canvas.getContext("2d");
 
-        canvas.width = 220;
-        canvas.height = 60;
+    canvas.width = 220;
+    canvas.height = 60;
 
-        ctx.fillStyle = "#d4af37";
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#d4af37";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-        let drawing = false;
+    let drawing = false;
 
-        canvas.addEventListener("mousedown", () => drawing = true);
-        canvas.addEventListener("mouseup", () => drawing = false);
-        canvas.addEventListener("mousemove", scratch);
+    // 🖱️ MOUSE
+    canvas.addEventListener("mousedown", () => drawing = true);
+    canvas.addEventListener("mouseup", () => drawing = false);
+    canvas.addEventListener("mousemove", scratch);
 
-        canvas.addEventListener("touchstart", () => drawing = true);
-        canvas.addEventListener("touchend", () => drawing = false);
-        canvas.addEventListener("touchmove", scratch);
+    // 📱 TOUCH (FIXED)
+    canvas.addEventListener("touchstart", (e) => {
+        drawing = true;
+        e.preventDefault(); // 🔥 STOP SCROLL
+    }, { passive: false });
 
-        function scratch(e) {
-            if (!drawing) return;
+    canvas.addEventListener("touchend", () => drawing = false);
 
-            const rect = canvas.getBoundingClientRect();
-            const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
-            const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+    canvas.addEventListener("touchmove", (e) => {
+        e.preventDefault(); // 🔥 STOP SCROLL
+        scratch(e);
+    }, { passive: false });
 
-            ctx.globalCompositeOperation = "destination-out";
-            ctx.beginPath();
-            ctx.arc(x, y, 12, 0, Math.PI * 2);
-            ctx.fill();
+    function scratch(e) {
+        if (!drawing) return;
 
-            const scratchText = document.querySelector(".scratch-text");
-            if (scratchText) scratchText.style.opacity = "0";
-        }
+        const rect = canvas.getBoundingClientRect();
+        const x = (e.touches ? e.touches[0].clientX : e.clientX) - rect.left;
+        const y = (e.touches ? e.touches[0].clientY : e.clientY) - rect.top;
+
+        ctx.globalCompositeOperation = "destination-out";
+        ctx.beginPath();
+        ctx.arc(x, y, 12, 0, Math.PI * 2);
+        ctx.fill();
+
+        const scratchText = document.querySelector(".scratch-text");
+        if (scratchText) scratchText.style.opacity = "0";
     }
+}
 
     // 🎯 COUPLE ANIMATION
     const groomCard = document.querySelector(".groom-card");

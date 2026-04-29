@@ -124,7 +124,10 @@ body {
     overflow: hidden;
     border: 1px solid #e75480;
 }
-
+/* 🔥 Prevent touch scroll inside scratch box */
+.scratch-box {
+    touch-action: none;
+}
 .hidden-date {
     position: absolute;
     width: 100%;
